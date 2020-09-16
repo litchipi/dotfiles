@@ -1,0 +1,7 @@
+machines/** filter=git-crypt diff=git-crypt
+global/** filter=git-crypt diff=git-crypt
+.gitattributes !filter !diff
+global/init.vim !filter !diff
+global/tmux.conf !filter !diff
+global/tmux_theme !filter !diff
+global/aliases.sh !filter !diff
