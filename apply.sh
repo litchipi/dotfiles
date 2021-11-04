@@ -50,6 +50,7 @@ bcp ./init.vim $HOME/.config/nvim/init.vim
 bcp ./coc-settings.json $HOME/.config/nvim/coc-settings.json
 bcp ./bashrc $HOME/.bashrc
 bcp ./aliases.sh $HOME/.aliases.sh
+bcp ./git-completion $HOME/.git-completion
 bcp ./ssh_config $HOME/.ssh/config
 bcp ./gitconfig $HOME/.gitconfig
 bcp ./memory_backup_makefile $HOME/.backup/Makefile

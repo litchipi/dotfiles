@@ -9,6 +9,7 @@ cp $HOME/.config/nvim/init.vim ./
 cp $HOME/.config/nvim/coc-settings.json ./
 cp $HOME/.bashrc ./bashrc
 cp $HOME/.aliases.sh ./aliases.sh
+cp $HOME/.git-completion ./git-completion
 cp $HOME/.ssh/config ./ssh_config
 cp $HOME/.gitconfig ./gitconfig
 cp $HOME/.backup/Makefile ./memory_backup_makefile
