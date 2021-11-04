@@ -103,3 +103,23 @@ alias webtopdf="wkhtmltopdf"
 
 # Backup
 alias backup="memory all; cd ~/.backup/; make -j$(nproc); cd -"
+
+
+# Nix aliases
+function _nixfiles() {
+    COMPREPLY=($(compgen -W "$(ls *.nix)" -- "${COMP_WORDS[COMP_CWORD]}"))
+}
+
+alias nix_refbuild='__nixbuilddeps $@'
+complete -F _nixfiles nix_refbuild
+function __nixbuilddeps() {
+	nix-store -q --references $(nix-instantiate $1)
+}
+
+alias nix_refrun='__nixrundeps $@'
+complete -F _nixfiles nix_refrun
+function __nixrundeps() {
+	drvfile=$(nix-instantiate $1)
+	nix-store -q --references $(nix-store -r $drvfile)
+}
+

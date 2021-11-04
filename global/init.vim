@@ -54,6 +54,7 @@ Plug 'xolox/vim-misc'
 
 Plug 'cespare/vim-toml'
 Plug 'nickel-lang/vim-nickel'
+Plug 'LnL7/vim-nix'
 call plug#end()
 
 filetype plugin indent on
