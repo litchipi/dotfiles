@@ -209,6 +209,7 @@ nnoremap <leader>²  :<C-u>CocFzfList symbols<CR>
 noremap <leader>" :set number!<CR>
 endfunction
 
+" Autocommands
 autocmd VimEnter * :call SetKeybindings()
 autocmd InsertLeave * write
 autocmd BufWinEnter * filetype detect
