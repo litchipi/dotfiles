@@ -35,7 +35,9 @@ cp $HOME/.moc/themes/* $MACHINE/moc/themes/
 
 if [ -d $HOME/.config/FreeTube/ ]; then
 	mkdir -p $MACHINE/FreeTube/
-	cp $HOME/.config/FreeTube/*.db $MACHINE/FreeTube/
+	cp $HOME/.config/FreeTube/profiles.db $MACHINE/FreeTube/
+	cp $HOME/.config/FreeTube/playlists.db $MACHINE/FreeTube/
+	cp $HOME/.config/FreeTube/settings.db $MACHINE/FreeTube/
 fi
 
 cp $HOME/.config/jrnl/jrnl.yaml $MACHINE/jrnl.yaml
