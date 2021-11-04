@@ -2,8 +2,12 @@
 
 set -e
 
-mkdir -p ~/.dotfiles_bck/
-touch ~/.dotfiles_bck/filenames_sum_list
+BACKUP_DIR=$HOME/.dotfiles_bck/
+mkdir -p $BACKUP_DIR
+
+if [ ! -d $BACKUP_DIR/.git ]; then
+	git init $BACKUP_DIR 1>/dev/null
+fi
 
 function bcpr() {
 	for f in $(ls $1); do
@@ -20,27 +24,26 @@ function bcpr() {
 function bcp() {
 	sfile=$(realpath $1)
 	dfile=$(realpath $2)
-
-	filesum=$(shasum $dfile | cut -d " " -f 1)
-	new_version_sum=$(shasum $sfile | cut -d " " -f 1)
-
-	if [ "$filesum" != "$new_version_sum" ]; then #"$new_version_sum" ]; then
-		fnamesum=$(echo $dfile | shasum | cut -d " " -f 1)
-		mkdir -p ~/.dotfiles_bck/$fnamesum/$filesum/
-		echo "Backing up file $dfile in $HOME/.dotfiles_bck/$fnamesum/$filesum/$(basename $dfile)"
-
-		if ! no_output grep $fnamesum ~/.dotfiles_bck/filenames_sum_list; then
-			echo "$dfile: $fnamesum" >> ~/.dotfiles_bck/filenames_sum_list
-		fi
-
-		echo -e "$(date "+%d/%m/%y %H:%M:%S") |\t$filesum" >> ~/.dotfiles_bck/$fnamesum/versions
-		cp $dfile ~/.dotfiles_bck/$fnamesum/$filesum/$(basename $dfile)
-	fi
-
-	mkdir -p $(dirname $sfile)
-	cp $sfile $dfile
+	backup_version $2
+	cp $1 $2
+	backup_version $2
 }
 
+function backup_version() {
+	dfile=$(realpath $1)
+	cd $BACKUP_DIR
+	mkdir -p $BACKUP_DIR/$(dirname $dfile)
+	cp $dfile $BACKUP_DIR/$dfile
+	git add $BACKUP_DIR/$dfile
+	if git status --porcelain | grep $(basename $dfile) 1>/dev/null ; then
+		echo "Backup file $dfile"
+		git commit -m "Backup file '$dfile'" 1>/dev/null
+		git gc --aggressive --prune --quiet
+	fi
+	cd - 1>/dev/null
+}
+
+cd global
 bcp ./tmux_theme $HOME/.tmux/tmux_theme
 bcp ./tmux.conf $HOME/.tmux.conf
 bcp ./init.vim $HOME/.config/nvim/init.vim
@@ -52,6 +55,7 @@ bcp ./gitconfig $HOME/.gitconfig
 bcp ./memory_backup_makefile $HOME/.backup/Makefile
 bcp ./gitk $HOME/.config/git/gitk
 bcp ./htoprc $HOME/.config/htop/htoprc
+cd ..
 
 ## Machine specific files: POSSIBLE SENSIBLE INFORMATIONS
 MACHINE=./machines/$HOSTNAME
@@ -62,10 +66,8 @@ fi
 
 bcp $MACHINE/memory_backup_locations.mk $HOME/.backup/locations.mk
 
-bcp $MACHINE/dconf_user $HOME/.config/dconf/user
-
 bcpr $MACHINE/ssh/ $HOME/.ssh/
-bcp $MACHINE/moc/config $HOME/.moc/
+bcp $MACHINE/moc/config $HOME/.moc/config
 bcpr $MACHINE/moc/themes/ $HOME/.moc/themes/
 
 if [ -d $MACHINE/FreeTube/ ]; then
