@@ -43,6 +43,16 @@ source $HOME/.git-completion
 alias ga="git add ."
 alias gcm="git commit -s -m"
 alias gts="git status"
+alias gitclean="git fetch -p && git gc --prune=now"
+
+alias gb="git branch --list"
+alias gba="git branch --list --all"
+alias gbc="git checkout -B "
+alias gbd="git branch -D"
+__git_complete gbd _git_branch
+
+alias gck="git checkout"
+__git_complete gck _git_checkout
 
 alias gl="git log --oneline -30"
 __git_complete gl git_log
@@ -89,7 +99,7 @@ alias dl_search_mp3_hq="dl_mp3_hq --default-search \"ytsearch\""
 
 alias dl_flac="youtube-dl $YTDL_ARGS --audio-format flac"
 alias dl_flac_hq="dl_flac --audio-quality 0"
-alias dl_search_mp3="dl_flac --default-search \"ytsearch\""
+alias dl_search_flac="dl_flac --default-search \"ytsearch\""
 alias dl_search_flac_hq="dl_flac_hq --default-search \"ytsearch\""
 
 # defaults
