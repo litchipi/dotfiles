@@ -79,6 +79,30 @@ alias ggk="git gui & gitk &"
 alias ggka="git gui & gitka &"
 
 
+alias gsave="__gsave"
+function __gsave() {
+	if [ $# -ne 1 ] ; then
+		echo "Usage: $0 <branch name>. Will create a temporary commit and checkout to the given branch"
+		exit 1;
+	fi
+	set -e
+	git add .
+	git commit -m "TMP COMMIT"
+	git checkout $1
+}
+__git_complete gsave _git_checkout
+
+alias gload="__gload"
+function __gload() {
+	if [ $# -ne 1 ] ; then
+		echo "Usage: $0 <branch name>. Will create a temporary commit and checkout to the given branch"
+		exit 1;
+	fi
+	set -e
+	git checkout $1
+	git reset --mixed HEAD~1
+}
+__git_complete gload _git_checkout
 
 
 # Youtube-dl
