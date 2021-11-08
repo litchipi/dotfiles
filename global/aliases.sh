@@ -112,13 +112,8 @@ alias webtopdf="wkhtmltopdf"
 
 
 # Backup
-function backup() {
-	if memory all; then
-		cd ~/.backup/ 
-		make -j$(nproc)
-		cd -
-	fi
-}
+alias backup="memory all && cd ~/.backup/ && make -j$(nproc) && cd -"
+
 
 # Nix aliases
 function _nixfiles() {
