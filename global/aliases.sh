@@ -104,6 +104,48 @@ function __gload() {
 }
 __git_complete gload _git_checkout
 
+ALIAS_COLOR="\033[1;96m"
+RESET="\033[0m"
+function __gh() {
+	echo -e "$ALIAS_COLOR $1:   $RESET $2"
+}
+
+function __ghelp() {
+	echo "Aliases defined for git:"
+	echo ""
+	__gh "ga" "Add everything to repo"
+	__gh "gcm" "Commit signed with a message (arg: message)"
+	__gh "gts" "Get status of repository"
+	__gh "gpsh" "Push the repository to remote"
+	__gh "gitclean" "Clean the repository, garbage collect, prune"
+	echo ""
+	__gh "gb" "List the local branches"
+	__gh "gba" "List all the branches"
+	__gh "gbc" "Create a new branch if doesn't exist, checkout on it"
+	__gh "gbd" "Delete a branch"
+	__gh "gck" "Checkout to a branch"
+	echo ""
+	__gh "gl" "Commit log of current branch"
+	__gh "gla" "Commit log of every branches"
+	__gh "gdf" "Print the diff since last commit"
+	__gh "grs" "Remove file from staged state"
+	echo ""
+	__gh "grh" "Reset HARD the branch to a given ref (default: HEAD)"
+	__gh "grm" "Reset MIXED the branch to a given ref (default: HEAD)"
+	__gh "gcp" "Cherry pick a commit from the given ref"
+	echo ""
+	__gh "gg" "Starts git gui in the background"
+	__gh "ggk" "Starts git gui with gitk, both in background"
+	__gh "gitka" "Starts gitk for with all branches displayed"
+	__gh "ggka" "Starts git gui with gitka, both in background"
+	echo ""
+	__gh "gkeep" " Create a temporary branch on the given commit to keep the ref"
+	__gh "gsave" "Create a temporary commit with the ongoing changes, and checkout the given branch"
+	__gh "gload" "Checkout the given branch, and restore the last commit made into ongoing changes"
+	echo ""
+}
+
+alias ghelp="__ghelp"
 
 # Youtube-dl
 if [ -d $HOME/Musique ]; then
