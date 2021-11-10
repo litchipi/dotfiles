@@ -71,7 +71,11 @@ __git_complete gcp  _git_cherry_pick
 
 alias gpsh="git push"
 __git_complete gpsh _git_push
-alias gkeep='git branch tmp.$(git rev-parse --short HEAD)'
+
+function __get_current_branch() {
+	git branch |grep "*"| cut -d " " -f 2
+}
+alias gkeep='git branch $(__get_current_branch).$(git rev-parse --short HEAD)'
 
 alias gg="git gui &"
 alias gitka="gitk --all --max-count=5000"
