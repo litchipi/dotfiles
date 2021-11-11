@@ -24,9 +24,13 @@ function bcpr() {
 function bcp() {
 	sfile=$(realpath $1)
 	dfile=$(realpath $2)
-	backup_version $2
-	cp $1 $2
-	backup_version $2
+	if [ -f $2 ] ; then
+		backup_version $2
+	fi
+	if [ -f $1 ] ; then
+		cp $1 $2 2>/dev/null
+		backup_version $2
+	fi
 }
 
 function backup_version() {
@@ -48,7 +52,6 @@ bcp ./tmux_theme $HOME/.tmux/tmux_theme
 bcp ./tmux.conf $HOME/.tmux.conf
 bcp ./init.vim $HOME/.config/nvim/init.vim
 bcp ./coc-settings.json $HOME/.config/nvim/coc-settings.json
-bcp ./bashrc $HOME/.bashrc
 bcp ./aliases.sh $HOME/.aliases.sh
 bcp ./git-completion $HOME/.git-completion
 bcp ./ssh_config $HOME/.ssh/config
@@ -65,6 +68,7 @@ if [ ! -d $MACHINE ] ; then
 	exit 0;
 fi
 
+bcp $MACHINE/bashrc $HOME/.bashrc
 bcp $MACHINE/memory_backup_locations.mk $HOME/.backup/locations.mk
 
 bcpr $MACHINE/ssh/ $HOME/.ssh/
@@ -79,3 +83,4 @@ bcp $MACHINE/jrnl.yaml $HOME/.config/jrnl/jrnl.yaml
 bcp $MACHINE/monitors.xml $HOME/.config/monitors.xml
 bcp $MACHINE/user-dirs.dirs $HOME/.config/user-dirs.dirs
 bcp $MACHINE/user-dirs.locale $HOME/.config/user-dirs.locale
+echo "Done"
