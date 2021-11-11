@@ -20,6 +20,31 @@ alias grep='grep --color=auto'
 # Network-related
 alias pingt='ping -c 1 www.google.fr 1> /dev/null 2> /dev/null && echo -e "'${GREEN_BOLD}'Connected'${RESET}'" || echo -e "'${RED_BOLD}'No connection'${RESET}'"'
 
+# VPN
+alias vpn_logout='protonvpn-cli logout' 
+alias vpn_login='/usr/bin/expect ~/.protonvpn_login.tcl litchi.pi $(gpg -q -d ~/.vpn_creds.gpg)'
+alias vpn='protonvpn-cli c --sc'
+alias vpn_p2p='protonvpn-cli c --p2p'
+alias vpn_tor='protonvpn-cli c --tor'
+alias vpn_cc='protonvpn-cli c --cc'
+alias vpn_random='protonvpn-cli c -r'
+alias vpn_fast='protonvpn-cli c -f'
+alias novpn='protonvpn-cli d'
+echo '#!/usr/bin/expect
+set user [lindex $argv 0]
+set p [lindex $argv 1]
+spawn -noecho protonvpn-cli login $user
+expect {
+    "already logged" { exit 0 };
+    "password" {
+        send_user "Entering password";
+        send "$p\n";
+        interact;
+        exit 0;
+    };
+    timeout { send_user "Timeout"; exit 254 };
+    eof { exit 253 };
+};' > $HOME/.protonvpn_login.tcl
 
 # Jrnl
 alias djrnl='__djrnl'

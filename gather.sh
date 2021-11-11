@@ -14,6 +14,7 @@ cp $HOME/.gitconfig ./gitconfig 2>/dev/null
 cp $HOME/.backup/Makefile ./memory_backup_makefile 2>/dev/null
 cp $HOME/.config/git/gitk ./gitk 2>/dev/null
 cp $HOME/.config/htop/htoprc ./htoprc 2>/dev/null
+cp $HOME/.vpn_creds.gpg ./vpn_creds.gpg 2>/dev/null
 cd ..
 
 ## Machine specific files: POSSIBLE SENSIBLE INFORMATIONS

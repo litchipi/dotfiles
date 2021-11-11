@@ -59,6 +59,7 @@ bcp ./gitconfig $HOME/.gitconfig
 bcp ./memory_backup_makefile $HOME/.backup/Makefile
 bcp ./gitk $HOME/.config/git/gitk
 bcp ./htoprc $HOME/.config/htop/htoprc
+bcp ./vpn_creds.gpg $HOME/.vpn_creds.gpg
 cd ..
 
 ## Machine specific files: POSSIBLE SENSIBLE INFORMATIONS
