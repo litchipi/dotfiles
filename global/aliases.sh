@@ -21,7 +21,7 @@ alias grep='grep --color=auto'
 alias pingt='ping -c 1 www.google.fr 1> /dev/null 2> /dev/null && echo -e "'${GREEN_BOLD}'Connected'${RESET}'" || echo -e "'${RED_BOLD}'No connection'${RESET}'"'
 
 # VPN
-alias vpn_logout='protonvpn-cli logout' 
+alias vpn_logout='protonvpn-cli logout'
 alias vpn_login='/usr/bin/expect ~/.protonvpn_login.tcl litchi.pi $(gpg -q -d ~/.vpn_creds.gpg)'
 alias vpn='protonvpn-cli c --sc'
 alias vpn_p2p='protonvpn-cli c --p2p'
