@@ -67,6 +67,7 @@ function _djrnl_autocomplete {
 source $HOME/.git-completion
 alias ga="git add ."
 alias gcm="git commit -s -m"
+alias gca="git commit --amend"
 alias gts="git status"
 alias gitclean="git fetch -p && git gc --prune=now"
 
@@ -74,6 +75,7 @@ alias gb="git branch --list"
 alias gba="git branch --list --all"
 alias gbc="git checkout -B "
 alias gbd="git branch -D"
+__git_complete gbc _git_branch
 __git_complete gbd _git_branch
 
 alias gck="git checkout"

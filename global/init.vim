@@ -85,9 +85,10 @@ set mouse=a
 "set autoindent
 "set smartindent
 set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+"set tabstop=4
+"set softtabstop=4
 set scrolloff=10
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 "Command executed when saving
 let g:session_autosave = 'yes'
