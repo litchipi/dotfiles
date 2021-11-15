@@ -7,7 +7,7 @@ cp $HOME/.tmux/tmux_theme ./ 2>/dev/null
 cp $HOME/.tmux.conf ./tmux.conf 2>/dev/null
 cp $HOME/.config/nvim/init.vim ./ 2>/dev/null
 cp $HOME/.config/nvim/coc-settings.json ./ 2>/dev/null
-cp $HOME/.aliases.sh ./aliases.sh 2>/dev/null
+cp -r $HOME/.aliases ./aliases 2>/dev/null
 cp $HOME/.git-completion ./git-completion 2>/dev/null
 cp $HOME/.ssh/config ./ssh_config 2>/dev/null
 cp $HOME/.gitconfig ./gitconfig 2>/dev/null

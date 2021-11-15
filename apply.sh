@@ -10,27 +10,28 @@ if [ ! -d $BACKUP_DIR/.git ]; then
 fi
 
 function bcpr() {
-	for f in $(ls $1); do
-		mkdir -p $2
-		if [ -f $f ]; then
-			bcp $f $2/$f
-		fi
-		if [ -d $f ]; then
-			bcpr $f $2/$(basename $f)/
-		fi
-	done
+    for f in $(ls $1); do
+        srcfile=$1/$f
+        mkdir -p $2
+        if [ -f $srcfile ]; then
+                bcp $srcfile $2/$f
+        fi
+        if [ -d $srcfile ]; then
+                bcpr $srcfile $2/$(basename $f)/
+        fi
+    done
 }
 
 function bcp() {
-	sfile=$(realpath $1)
-	dfile=$(realpath $2)
-	if [ -f $2 ] ; then
-		backup_version $2
-	fi
-	if [ -f $1 ] ; then
-		cp $1 $2 2>/dev/null
-		backup_version $2
-	fi
+    sfile=$(realpath $1)
+    dfile=$(realpath $2)
+    if [ -f $2 ] ; then
+            backup_version $2
+    fi
+    if [ -f $1 ] ; then
+            cp $1 $2 2>/dev/null
+            backup_version $2
+    fi
 }
 
 function backup_version() {
@@ -52,7 +53,7 @@ bcp ./tmux_theme $HOME/.tmux/tmux_theme
 bcp ./tmux.conf $HOME/.tmux.conf
 bcp ./init.vim $HOME/.config/nvim/init.vim
 bcp ./coc-settings.json $HOME/.config/nvim/coc-settings.json
-bcp ./aliases.sh $HOME/.aliases.sh
+bcpr ./aliases $HOME/.aliases/
 bcp ./git-completion $HOME/.git-completion
 bcp ./ssh_config $HOME/.ssh/config
 bcp ./gitconfig $HOME/.gitconfig
