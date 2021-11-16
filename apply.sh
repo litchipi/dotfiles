@@ -82,7 +82,6 @@ if [ -d $MACHINE/FreeTube/ ]; then
 fi
 
 bcp $MACHINE/jrnl.yaml $HOME/.config/jrnl/jrnl.yaml
-bcp $MACHINE/monitors.xml $HOME/.config/monitors.xml
 bcp $MACHINE/user-dirs.dirs $HOME/.config/user-dirs.dirs
 bcp $MACHINE/user-dirs.locale $HOME/.config/user-dirs.locale
 echo "Done"

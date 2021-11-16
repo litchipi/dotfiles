@@ -41,6 +41,5 @@ if [ -d $HOME/.config/FreeTube/ ]; then
 fi
 
 cp $HOME/.config/jrnl/jrnl.yaml $MACHINE/jrnl.yaml 2>/dev/null
-cp $HOME/.config/monitors.xml $MACHINE/ 2>/dev/null
 cp $HOME/.config/user-dirs.* $MACHINE/ 2>/dev/null
 echo "Done"
