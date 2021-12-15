@@ -61,7 +61,7 @@ bcp ./memory_backup_makefile $HOME/.backup/Makefile
 bcp ./gitk $HOME/.config/git/gitk
 bcp ./htoprc $HOME/.config/htop/htoprc
 bcp ./vpn_creds.gpg $HOME/.vpn_creds.gpg
-bcp ./restsrv_pwd $HOME/.restsrv_pwd
+bcp ./memory_pwd $HOME/.memory_pwd
 cd ..
 
 ## Machine specific files: POSSIBLE SENSIBLE INFORMATIONS
