@@ -12,7 +12,6 @@ cp $HOME/.git-completion ./git-completion 2>/dev/null
 cp $HOME/.ssh/config ./ssh_config 2>/dev/null
 cp $HOME/.gitconfig ./gitconfig 2>/dev/null
 cp $HOME/.backup/Makefile ./memory_backup_makefile 2>/dev/null
-cp $HOME/.config/git/gitk ./gitk 2>/dev/null
 cp $HOME/.config/htop/htoprc ./htoprc 2>/dev/null
 cp $HOME/.vpn_creds.gpg ./vpn_creds.gpg 2>/dev/null
 cp $HOME/.memory_pwd ./memory_pwd 2>/dev/null
@@ -44,4 +43,6 @@ fi
 
 cp $HOME/.config/jrnl/jrnl.yaml $MACHINE/jrnl.yaml 2>/dev/null
 cp $HOME/.config/user-dirs.* $MACHINE/ 2>/dev/null
+
+cp /etc/hosts $MACHINE/ 2>/dev/null     # Gather only, apply manually
 echo "Done"
