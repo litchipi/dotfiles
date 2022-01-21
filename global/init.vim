@@ -210,6 +210,17 @@ nnoremap <leader>g  :<C-u>CocFzfList commands<CR>
 nnoremap <leader>e  :<C-u>CocFzfList outline<CR>
 nnoremap <leader>²  :<C-u>CocFzfList symbols<CR>
 
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 noremap <leader>" :set number!<CR>
 endfunction
 
