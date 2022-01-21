@@ -259,3 +259,11 @@ let g:NERDToggleCheckAllLines = 1
 
 " Add your own custom formats or override the defaults
 let g:NERDCustomDelimiters = {'c': { 'left': '//' }, 'haskell': {'left':'--'}}
+
+" OcaMl
+if executable('opam')
+  let g:opamshare=substitute(system('opam config var share'),'\n$','','''')
+  if isdirectory(g:opamshare."/merlin/vim")
+    execute "set rtp+=" . g:opamshare."/merlin/vim"
+  endif
+endif
