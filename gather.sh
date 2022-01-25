@@ -49,7 +49,7 @@ cp $HOME/.ssh/id_rsa* $MACHINE/ssh/ 2>/dev/null
 cp $HOME/.gogs_token $MACHINE/gogs_token 2>/dev/null
 cp $HOME/.ssh/known_hosts $MACHINE/ssh/ 2>/dev/null
 cp $HOME/.ssh/authorized_keys $MACHINE/ssh/ 2>/dev/null
-find_and_copy $HOME/.nix_shells/ $MACHINE/nix_shells/ -name "flake.nix"
+find_and_copy $HOME/.nix_shells/ $MACHINE/nix_shells/ -name "flake.*"
 
 mkdir -p $MACHINE/moc/ $MACHINE/moc/themes
 cp $HOME/.moc/config $MACHINE/moc/ 2>/dev/null
