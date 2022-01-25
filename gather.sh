@@ -5,11 +5,17 @@ function gather_dir() {
     cp -r $1 $2
 }
 
-function gather_git() {
-    if [ ! -d $1/.git ]; then
-        return
-    fi
-    git clone --depth 1 $1 $2
+function find_and_copy() {
+    src=$1
+    dst=$2
+    mkdir -p $dst
+    shift 2;
+    find $src $@ -print0 | 
+    while IFS= read -r -d '' file; do
+        d=$dst/$(basename $(dirname $file))
+        mkdir -p $d
+        cp $file $d/
+    done
 }
 
 rm -rf ./global
@@ -43,7 +49,7 @@ cp $HOME/.ssh/id_rsa* $MACHINE/ssh/ 2>/dev/null
 cp $HOME/.gogs_token $MACHINE/gogs_token 2>/dev/null
 cp $HOME/.ssh/known_hosts $MACHINE/ssh/ 2>/dev/null
 cp $HOME/.ssh/authorized_keys $MACHINE/ssh/ 2>/dev/null
-gather_git $HOME/.nix_shells/ $MACHINE/nix_shells 2>/dev/null
+find_and_copy $HOME/.nix_shells/ $MACHINE/nix_shells/ -name "flake.nix"
 
 mkdir -p $MACHINE/moc/ $MACHINE/moc/themes
 cp $HOME/.moc/config $MACHINE/moc/ 2>/dev/null
