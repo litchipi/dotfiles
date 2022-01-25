@@ -61,6 +61,7 @@ bcp ./memory_backup_makefile $HOME/.backup/Makefile
 bcp ./htoprc $HOME/.config/htop/htoprc
 bcp ./vpn_creds.gpg $HOME/.vpn_creds.gpg
 bcp ./memory_pwd $HOME/.memory_pwd
+bcpr ./gnupg $HOME/.gnupg/
 cd ..
 
 ## Machine specific files: POSSIBLE SENSIBLE INFORMATIONS
