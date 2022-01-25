@@ -75,6 +75,7 @@ bcp $MACHINE/bashrc $HOME/.bashrc
 bcp $MACHINE/memory_backup_locations.mk $HOME/.backup/locations.mk
 bcp $MACHINE/gogs_token $HOME/.gogs_token
 
+bcpr $MACHINE/nix_shells $HOME/.nix_shells
 bcpr $MACHINE/ssh/ $HOME/.ssh/
 bcp $MACHINE/moc/config $HOME/.moc/config
 bcpr $MACHINE/moc/themes/ $HOME/.moc/themes/

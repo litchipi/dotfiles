@@ -1,5 +1,17 @@
 #!/bin/bash
 
+function gather_dir() {
+    mkdir -p $1
+    cp -r $1 $2
+}
+
+function gather_git() {
+    if [ ! -d $1/.git ]; then
+        return
+    fi
+    git clone --depth 1 $1 $2
+}
+
 rm -rf ./global
 mkdir ./global/
 cd global
@@ -7,7 +19,7 @@ cp $HOME/.tmux/tmux_theme ./ 2>/dev/null
 cp $HOME/.tmux.conf ./tmux.conf 2>/dev/null
 cp $HOME/.config/nvim/init.vim ./ 2>/dev/null
 cp $HOME/.config/nvim/coc-settings.json ./ 2>/dev/null
-cp -r $HOME/.aliases ./aliases 2>/dev/null
+gather_dir $HOME/.aliases ./aliases 2>/dev/null
 cp $HOME/.git-completion ./git-completion 2>/dev/null
 cp $HOME/.ssh/config ./ssh_config 2>/dev/null
 cp $HOME/.gitconfig ./gitconfig 2>/dev/null
@@ -15,7 +27,7 @@ cp $HOME/.backup/Makefile ./memory_backup_makefile 2>/dev/null
 cp $HOME/.config/htop/htoprc ./htoprc 2>/dev/null
 cp $HOME/.vpn_creds.gpg ./vpn_creds.gpg 2>/dev/null
 cp $HOME/.memory_pwd ./memory_pwd 2>/dev/null
-cp -r $HOME/.gnupg/ ./gnupg/ 2>/dev/null
+gather_dir $HOME/.gnupg/ ./gnupg/ 2>/dev/null
 cd ..
 
 ## Machine specific files: POSSIBLE SENSIBLE INFORMATIONS
@@ -31,6 +43,7 @@ cp $HOME/.ssh/id_rsa* $MACHINE/ssh/ 2>/dev/null
 cp $HOME/.gogs_token $MACHINE/gogs_token 2>/dev/null
 cp $HOME/.ssh/known_hosts $MACHINE/ssh/ 2>/dev/null
 cp $HOME/.ssh/authorized_keys $MACHINE/ssh/ 2>/dev/null
+gather_git $HOME/.nix_shells/ $MACHINE/nix_shells 2>/dev/null
 
 mkdir -p $MACHINE/moc/ $MACHINE/moc/themes
 cp $HOME/.moc/config $MACHINE/moc/ 2>/dev/null
