@@ -9,6 +9,26 @@ if [ ! -d $BACKUP_DIR/.git ]; then
 	git init $BACKUP_DIR 1>/dev/null
 fi
 
+function update_git_repo() {
+    cd $1
+    git add . 1>/dev/null 2>/dev/null
+    git commit -s -m "Updated from dotfiles application" 1>/dev/null 2>/dev/null
+    cd - 1>/dev/null 2>/dev/null
+}
+
+function find_and_copy() {
+    src=$1
+    dst=$2
+    mkdir -p $dst
+    shift 2;
+    find $src $@ -print0 | 
+    while IFS= read -r -d '' file; do
+        d=$dst/$(basename $(dirname $file))
+        mkdir -p $d
+        cp $file $d/
+    done
+}
+
 function bcpr() {
     for f in $(ls $1); do
         srcfile=$1/$f
@@ -75,7 +95,8 @@ bcp $MACHINE/bashrc $HOME/.bashrc
 bcp $MACHINE/memory_backup_locations.mk $HOME/.backup/locations.mk
 bcp $MACHINE/gogs_token $HOME/.gogs_token
 
-bcpr $MACHINE/nix_shells $HOME/.nix_shells
+find_and_copy $MACHINE/nix_shells $HOME/.nix_shells -name "flake.*"
+update_git_repo $HOME/.nix_shells
 bcpr $MACHINE/ssh/ $HOME/.ssh/
 bcp $MACHINE/moc/config $HOME/.moc/config
 bcpr $MACHINE/moc/themes/ $HOME/.moc/themes/
