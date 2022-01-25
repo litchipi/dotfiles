@@ -72,6 +72,7 @@ if [ ! -d $MACHINE ] ; then
 fi
 
 bcp $MACHINE/bashrc $HOME/.bashrc
+bcp $MACHINE/profile $HOME/.profile
 bcp $MACHINE/memory_backup_locations.mk $HOME/.backup/locations.mk
 bcp $MACHINE/gogs_token $HOME/.gogs_token
 

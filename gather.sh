@@ -45,6 +45,7 @@ cp $HOME/.backup/locations.mk $MACHINE/memory_backup_locations.mk  2>/dev/null
 
 mkdir -p $MACHINE/ssh
 cp $HOME/.bashrc $MACHINE/bashrc 2>/dev/null
+cp $HOME/.profile $MACHINE/profile 2>/dev/null
 cp $HOME/.ssh/id_rsa* $MACHINE/ssh/ 2>/dev/null
 cp $HOME/.gogs_token $MACHINE/gogs_token 2>/dev/null
 cp $HOME/.ssh/known_hosts $MACHINE/ssh/ 2>/dev/null
