@@ -69,6 +69,7 @@ function backup_version() {
 }
 
 cd global
+bcp ./alacritty.yml $HOME/.alacritty.yml
 bcp ./tmux_theme $HOME/.tmux/tmux_theme
 bcp ./tmux.conf $HOME/.tmux.conf
 bcp ./init.vim $HOME/.config/nvim/init.vim

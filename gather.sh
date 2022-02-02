@@ -21,6 +21,7 @@ function find_and_copy() {
 rm -rf ./global
 mkdir ./global/
 cd global
+cp $HOME/.alacritty.yml ./alacritty.yml 2>/dev/null
 cp $HOME/.tmux/tmux_theme ./ 2>/dev/null
 cp $HOME/.tmux.conf ./tmux.conf 2>/dev/null
 cp $HOME/.config/nvim/init.vim ./ 2>/dev/null
