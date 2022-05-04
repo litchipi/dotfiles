@@ -93,15 +93,12 @@ set scrolloff=10
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 "Command executed when saving
-let g:session_autosave = 'yes'
-let g:session_autoload = 'yes'
 
 set sessionoptions-=help
 set sessionoptions-=options
 set sessionoptions-=blank
 
 let g:session_verbose_messages = 0
-let g:session_default_name = fnamemodify(getenv('PWD'), ':p')
 
 if argc() == 0 
 	au BufWritePost * exe ":SaveSession! ".fnamemodify(getenv('PWD'), ':p')
@@ -119,12 +116,6 @@ let g:tokyonight_transparent_background = 1
 
 colorscheme tokyonight
 let g:airline_theme = "tokyonight"
-
-set number                  " add line numbers
-let g:indentLine_setColors = 1
-let g:indentLine_color_term = 1
-let g:indentLine_char = '┊'
-set cc=100
 
 set wildmode=longest,list   " get bash-like tab completions
 
