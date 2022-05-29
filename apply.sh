@@ -75,6 +75,8 @@ bcp ./tmux.conf $HOME/.tmux.conf
 bcp ./init.vim $HOME/.config/nvim/init.vim
 bcp ./coc-settings.json $HOME/.config/nvim/coc-settings.json
 bcpr ./aliases $HOME/.aliases/
+bcp ./helix/config.toml $HOME/.config/helix/
+bcpr ./helix/themes $HOME/.config/helix/runtime/themes
 bcp ./git-completion $HOME/.git-completion
 bcp ./ssh_config $HOME/.ssh/config
 bcp ./gitconfig $HOME/.gitconfig

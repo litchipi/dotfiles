@@ -19,11 +19,13 @@ function find_and_copy() {
 }
 
 rm -rf ./global
-mkdir ./global/
+mkdir -p ./global/ ./global/helix
 cd global
 cp $HOME/.alacritty.yml ./alacritty.yml 2>/dev/null
 cp $HOME/.tmux/tmux_theme ./ 2>/dev/null
 cp $HOME/.tmux.conf ./tmux.conf 2>/dev/null
+cp $HOME/.config/helix/*.toml ./helix/ 2>/dev/null
+gather_dir $HOME/.config/helix/runtime/themes/ ./helix/themes 2>/dev/null
 cp $HOME/.config/nvim/init.vim ./ 2>/dev/null
 cp $HOME/.config/nvim/coc-settings.json ./ 2>/dev/null
 gather_dir $HOME/.aliases ./aliases 2>/dev/null
